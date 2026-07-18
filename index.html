@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ゼロから学ぶドイツ語文法 — 英語と比べて分かる5ステップ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ffffff;
+    --paper-soft:#faf9f7;
+    --ink:#2b2b2b;
+    --ink-soft:#5c5c5c;
+    --ink-faint:#8a8a8a;
+    --black:#151515;
+    --red:#D4212C;
+    --gold:#E0A93B;
+    --gold-soft:#f6ecd2;
+    --line:#e9e7e2;
+    --line-strong:#d8d5cd;
+    --correct:#1f7a4d;
+    --correct-bg:#e7f5ec;
+    --correct-line:#bfe3cd;
+    --wrong:#c0392b;
+    --wrong-bg:#fdecea;
+    --wrong-line:#f4c9c3;
+    --shadow:0 10px 30px -12px rgba(20,20,20,.18);
+    --shadow-lg:0 24px 50px -20px rgba(20,20,20,.28);
+    --radius:16px;
+    --display:"Bricolage Grotesque","Noto Sans JP",system-ui,sans-serif;
+    --body:"Inter","Noto Sans JP",system-ui,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+    font-feature-settings:"palt";
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none!important;transition:none!important;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:64px 24px 52px;
+    text-align:center;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .flag-bands{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    opacity:.06;z-index:0;
+  }
+  .flag-bands span{flex:1;}
+  .flag-bands span:nth-child(1){background:var(--black);}
+  .flag-bands span:nth-child(2){background:var(--red);}
+  .flag-bands span:nth-child(3){background:var(--gold);}
+  .hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;}
+  .flag-chip{
+    display:inline-flex;align-items:center;gap:0;
+    height:22px;border-radius:5px;overflow:hidden;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);margin-bottom:22px;
+    border:1px solid rgba(0,0,0,.08);
+  }
+  .flag-chip i{display:block;width:34px;height:100%;}
+  .flag-chip i:nth-child(1){background:var(--black);}
+  .flag-chip i:nth-child(2){background:var(--red);}
+  .flag-chip i:nth-child(3){background:var(--gold);}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(2rem,6vw,3.4rem);
+    line-height:1.12;
+    letter-spacing:-.02em;
+    margin:0 0 16px;
+    color:var(--black);
+  }
+  .hero h1 .accent{color:var(--red);}
+  .hero p{
+    font-size:clamp(1rem,2.4vw,1.15rem);
+    color:var(--ink-soft);
+    margin:0 auto;
+    max-width:560px;
+  }
+  .hero .kicker{
+    font-family:var(--display);
+    font-weight:700;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    color:var(--gold);
+    margin-bottom:14px;
+  }
+
+  /* ---------- Sticky nav (目次) ---------- */
+  .toc{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:saturate(180%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .toc-inner{
+    max-width:960px;margin:0 auto;
+    display:flex;align-items:center;gap:10px;
+    padding:12px 16px;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .toc-inner::-webkit-scrollbar{display:none;}
+  .toc-label{
+    font-family:var(--display);font-weight:700;
+    font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--ink-faint);white-space:nowrap;padding-right:4px;
+    flex-shrink:0;
+  }
+  .toc a{
+    flex-shrink:0;
+    text-decoration:none;
+    font-size:.85rem;font-weight:600;
+    color:var(--ink-soft);
+    padding:7px 13px;border-radius:999px;
+    border:1px solid var(--line-strong);
+    white-space:nowrap;
+    transition:all .18s ease;
+    background:var(--paper);
+  }
+  .toc a b{color:var(--red);font-weight:800;margin-right:5px;}
+  .toc a:hover{border-color:var(--gold);color:var(--black);box-shadow:var(--shadow);transform:translateY(-1px);}
+
+  /* ---------- Layout ---------- */
+  main{max-width:820px;margin:0 auto;padding:8px 20px 80px;}
+  .step{padding-top:56px;}
+  .step-head{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px;}
+  .step-num{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:1.05rem;
+    color:var(--red);
+    flex-shrink:0;
+    padding-top:4px;
+    position:relative;
+  }
+  .step-num::before{content:"[";color:var(--gold);margin-right:2px;}
+  .step-num::after{content:"]";color:var(--gold);margin-left:2px;}
+  .step-head h2{
+    font-family:var(--display);
+    font-weight:800;
+    font-size:clamp(1.4rem,4vw,1.9rem);
+    line-height:1.2;
+    letter-spacing:-.01em;
+    margin:0;
+    color:var(--black);
+  }
+  .step-head .sub{
+    display:block;font-family:var(--body);font-weight:500;
+    font-size:.9rem;color:var(--ink-faint);margin-top:6px;letter-spacing:.02em;
+  }
+
+  p.lead{font-size:1.02rem;color:var(--ink);margin:0 0 20px;}
+  .step h3{
+    font-family:var(--display);font-weight:700;
+    font-size:1.12rem;color:var(--black);
+    margin:30px 0 12px;
+  }
+
+  /* ---------- Card ---------- */
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px 22px;
+    margin:20px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .card::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--black) 0 33.3%,var(--red) 33.3% 66.6%,var(--gold) 66.6% 100%);
+  }
+  .card.plain::before{display:none;}
+
+  /* ---------- Compare block (英語 vs ドイツ語) ---------- */
+  .compare{
+    border:1px dashed var(--gold);
+    background:var(--gold-soft);
+    border-radius:14px;
+    padding:18px 20px;
+    margin:22px 0;
+  }
+  .compare-title{
+    font-family:var(--display);font-weight:700;font-size:1rem;
+    color:var(--black);margin:0 0 12px;display:flex;align-items:center;gap:8px;
+  }
+  .compare-title::before{
+    content:"⇄";display:inline-flex;align-items:center;justify-content:center;
+    width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;
+    font-size:.85rem;flex-shrink:0;
+  }
+  .compare .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+  .vs .col{background:#fff;border-radius:10px;padding:12px 14px;border:1px solid var(--line);}
+  .vs .col .tag{
+    font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.08em;
+    text-transform:uppercase;display:inline-block;margin-bottom:6px;padding:2px 8px;border-radius:5px;
+  }
+  .vs .col.en .tag{background:#eef1f6;color:#33507a;}
+  .vs .col.de .tag{background:#fbeceb;color:var(--red);}
+  .vs .col p{margin:0;font-size:.92rem;color:var(--ink-soft);}
+  .compare .point{
+    margin-top:12px;font-size:.92rem;color:var(--ink);
+    padding-left:14px;border-left:3px solid var(--red);
+  }
+  .compare .point.same{border-left-color:var(--gold);}
+
+  /* ---------- Table ---------- */
+  .table-wrap{overflow-x:auto;margin:16px 0;-webkit-overflow-scrolling:touch;}
+  table{border-collapse:collapse;width:100%;min-width:420px;font-size:.94rem;}
+  caption{text-align:left;font-family:var(--display);font-weight:700;font-size:.9rem;color:var(--ink-faint);padding-bottom:8px;}
+  th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--line);}
+  thead th{
+    background:var(--black);color:#fff;font-weight:600;font-size:.85rem;
+    letter-spacing:.02em;border-bottom:none;
+  }
+  thead th:first-child{border-top-left-radius:8px;}
+  thead th:last-child{border-top-right-radius:8px;}
+  tbody tr:nth-child(even){background:var(--paper-soft);}
+  tbody tr:hover{background:var(--gold-soft);}
+  td .de{font-weight:700;color:var(--black);}
+  td .kana{color:var(--ink-faint);font-size:.82rem;}
+  .hl{color:var(--red);font-weight:800;}
+
+  /* ---------- Example sentence ---------- */
+  .ex{margin:14px 0;padding:14px 16px;background:var(--paper-soft);border-radius:12px;border:1px solid var(--line);}
+  .ex + .ex{margin-top:10px;}
+  .ex .de{font-family:var(--display);font-weight:700;font-size:1.06rem;color:var(--black);display:block;}
+  .ex .kana{color:var(--red);font-size:.84rem;display:block;margin:3px 0 2px;letter-spacing:.02em;}
+  .ex .jp{color:var(--ink-soft);font-size:.92rem;display:block;}
+  .ex .de u{text-decoration:none;border-bottom:3px solid var(--gold);}
+
+  /* ---------- Quiz ---------- */
+  .quiz{
+    background:linear-gradient(180deg,#fff, #fdfcfa);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    padding:24px 22px;
+    margin:28px 0 8px;
+    position:relative;
+  }
+  .quiz-badge{
+    position:absolute;top:-13px;left:22px;
+    background:var(--red);color:#fff;
+    font-family:var(--display);font-weight:800;font-size:.78rem;
+    letter-spacing:.06em;padding:5px 13px;border-radius:8px;
+    box-shadow:0 6px 16px -6px rgba(212,33,44,.6);
+  }
+  .quiz-q{font-size:1.08rem;font-weight:600;color:var(--black);margin:8px 0 16px;line-height:1.6;}
+  .quiz-q .blank{color:var(--red);font-weight:800;letter-spacing:.05em;}
+  .options{display:flex;flex-direction:column;gap:10px;}
+  .opt{
+    display:flex;align-items:center;gap:12px;
+    text-align:left;width:100%;
+    background:#fff;border:1.5px solid var(--line-strong);
+    border-radius:12px;padding:13px 15px;
+    font-family:var(--body);font-size:1rem;color:var(--ink);
+    cursor:pointer;transition:all .16s ease;
+  }
+  .opt .mark{
+    flex-shrink:0;width:26px;height:26px;border-radius:50%;
+    border:2px solid var(--line-strong);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:800;font-size:.85rem;color:var(--ink-faint);
+    transition:all .16s ease;
+  }
+  .opt:hover:not(:disabled){border-color:var(--gold);transform:translateY(-1px);box-shadow:var(--shadow);}
+  .opt.selected{border-color:var(--black);background:#fbfaf7;}
+  .opt.selected .mark{border-color:var(--black);background:var(--black);color:#fff;}
+  .opt.correct{border-color:var(--correct);background:var(--correct-bg);color:var(--correct);font-weight:600;}
+  .opt.correct .mark{border-color:var(--correct);background:var(--correct);color:#fff;}
+  .opt.wrong{border-color:var(--wrong);background:var(--wrong-bg);color:var(--wrong);font-weight:600;}
+  .opt.wrong .mark{border-color:var(--wrong);background:var(--wrong);color:#fff;}
+  .opt:disabled{cursor:default;}
+
+  .quiz-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .btn{
+    font-family:var(--display);font-weight:700;font-size:.95rem;
+    border:none;border-radius:11px;padding:12px 20px;cursor:pointer;
+    transition:all .16s ease;
+  }
+  .btn-primary{background:var(--black);color:#fff;box-shadow:0 8px 18px -8px rgba(0,0,0,.5);}
+  .btn-primary:hover{background:#000;transform:translateY(-1px);}
+  .btn-primary:disabled{opacity:.4;cursor:default;transform:none;}
+  .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line-strong);}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--black);transform:translateY(-1px);}
+
+  .feedback{
+    margin-top:16px;padding:15px 17px;border-radius:12px;
+    font-size:.96rem;line-height:1.65;
+    display:none;
+  }
+  .feedback.show{display:block;animation:pop .4s ease;}
+  @keyframes pop{
+    0%{opacity:0;transform:translateY(8px) scale(.98);}
+    100%{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .feedback.ok{background:var(--correct-bg);border:1px solid var(--correct-line);color:#155e3b;}
+  .feedback.ng{background:var(--wrong-bg);border:1px solid var(--wrong-line);color:#8f2318;}
+  .feedback .head{font-family:var(--display);font-weight:800;font-size:1.05rem;display:block;margin-bottom:5px;}
+  .feedback .explain{color:inherit;opacity:.92;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;padding:44px 20px 60px;border-top:1px solid var(--line);
+    color:var(--ink-faint);font-size:.85rem;
+  }
+  footer .bar{
+    width:60px;height:5px;margin:0 auto 18px;border-radius:3px;
+    background:linear-gradient(90deg,var(--black) 0 33.3%,var(--red) 33.3% 66.6%,var(--gold) 66.6% 100%);
+  }
+
+  @media (max-width:560px){
+    .compare .vs{grid-template-columns:1fr;}
+    .card{padding:20px 16px;}
+    .quiz{padding:22px 16px;}
+    .step-head{gap:12px;}
+    .hero{padding:48px 20px 40px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="flag-bands"><span></span><span></span><span></span></div>
+  <div class="hero-inner">
+    <div class="kicker">Deutsch für Anfänger</div>
+    <div class="flag-chip"><i></i><i></i><i></i></div>
+    <h1>ゼロから学ぶ<br><span class="accent">ドイツ語文法</span>入門</h1>
+    <p>「英語だとこうだけど、ドイツ語ではどうなる？」——英語と比べながら進む5ステップ。各章のラストには、毎回変わるミニクイズ付き。</p>
+  </div>
+</header>
+
+<!-- ============ 目次ナビ ============ -->
+<nav class="toc" aria-label="目次">
+  <div class="toc-inner">
+    <span class="toc-label">目次</span>
+    <a href="#step1"><b>1</b>sein動詞</a>
+    <a href="#step2"><b>2</b>動詞の人称変化</a>
+    <a href="#step3"><b>3</b>名詞の性と4格</a>
+    <a href="#step4"><b>4</b>否定文・疑問文</a>
+    <a href="#step5"><b>5</b>助動詞と枠構造</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ================= STEP 1 ================= -->
+  <section class="step" id="step1">
+    <div class="step-head">
+      <div class="step-num">01</div>
+      <div>
+        <h2>主語とsein動詞</h2>
+        <span class="sub">英語の be動詞（am / are / is）にあたるもの</span>
+      </div>
+    </div>
+
+    <p class="lead">まずは文の土台、「〜です／〜だ」を表す <b>sein（ザイン）</b>動詞から。英語の be動詞と同じ役割ですが、主語によって形がガラッと変わります。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">主語（人称代名詞）× sein 一覧</h3>
+      <div class="table-wrap">
+        <table>
+          <caption>主語ごとに sein の形が変化する</caption>
+          <thead>
+            <tr><th>主語（ドイツ語）</th><th>意味</th><th>sein の形</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="de">ich</span> <span class="kana">イッヒ</span></td><td>私は</td><td><span class="hl">bin</span> <span class="kana">ビン</span></td></tr>
+            <tr><td><span class="de">du</span> <span class="kana">ドゥー</span></td><td>君は</td><td><span class="hl">bist</span> <span class="kana">ビスト</span></td></tr>
+            <tr><td><span class="de">er / sie / es</span> <span class="kana">エア／ズィー／エス</span></td><td>彼／彼女／それは</td><td><span class="hl">ist</span> <span class="kana">イスト</span></td></tr>
+            <tr><td><span class="de">wir</span> <span class="kana">ヴィア</span></td><td>私たちは</td><td><span class="hl">sind</span> <span class="kana">ズィント</span></td></tr>
+            <tr><td><span class="de">ihr</span> <span class="kana">イーア</span></td><td>君たちは</td><td><span class="hl">seid</span> <span class="kana">ザイト</span></td></tr>
+            <tr><td><span class="de">sie / Sie</span> <span class="kana">ズィー</span></td><td>彼ら／あなた（丁寧）は</td><td><span class="hl">sind</span> <span class="kana">ズィント</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>形は <b>am / are / is</b> の <b>3種類</b>だけ。you も we も they もぜんぶ are で済む。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p>形は <b>bin / bist / ist / sind / seid</b> の <b>5種類</b>。主語ごとに覚える必要がある。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語より変化が激しい。特に「私＝bin」「君＝bist」は英語にない専用の形。</p>
+      <p class="point same">🤝 <b>ここは英語と似ている：</b>「主語＋be動詞＋◯◯」で「〜です」を作る語順は同じ。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich <u>bin</u> Student.</span><span class="kana">イッヒ ビン シュトゥデント</span><span class="jp">私は学生です。（英：I am a student.）</span></div>
+    <div class="ex"><span class="de">Du <u>bist</u> nett.</span><span class="kana">ドゥー ビスト ネット</span><span class="jp">君は親切だ。（英：You are nice.）</span></div>
+    <div class="ex"><span class="de">Er <u>ist</u> müde.</span><span class="kana">エア イスト ミューデ</span><span class="jp">彼は疲れている。（英：He is tired.）</span></div>
+
+    <div class="quiz" data-step="s1">
+      <span class="quiz-badge">MINI QUIZ · Step 1</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 2 ================= -->
+  <section class="step" id="step2">
+    <div class="step-head">
+      <div class="step-num">02</div>
+      <div>
+        <h2>一般動詞の現在形と人称変化</h2>
+        <span class="sub">lernen（学ぶ）, machen（する）などの規則動詞</span>
+      </div>
+    </div>
+
+    <p class="lead">次は「学ぶ」「作る」といった普通の動詞。ドイツ語では、語幹（変わらない部分）に<b>主語ごとの語尾</b>をくっつけて使います。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">lernen（レルネン＝学ぶ）の変化</h3>
+      <p style="margin:0 0 12px;color:var(--ink-soft);font-size:.92rem;">語幹は <b>lern-</b>。ここに語尾 <span class="hl">-e / -st / -t / -en</span> を付ける。</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>主語</th><th>形</th><th>語尾</th></tr></thead>
+          <tbody>
+            <tr><td>ich</td><td><span class="de">lern<span class="hl">e</span></span> <span class="kana">レルネ</span></td><td>-e</td></tr>
+            <tr><td>du</td><td><span class="de">lern<span class="hl">st</span></span> <span class="kana">レルンスト</span></td><td>-st</td></tr>
+            <tr><td>er / sie / es</td><td><span class="de">lern<span class="hl">t</span></span> <span class="kana">レルント</span></td><td>-t</td></tr>
+            <tr><td>wir</td><td><span class="de">lern<span class="hl">en</span></span> <span class="kana">レルネン</span></td><td>-en</td></tr>
+            <tr><td>ihr</td><td><span class="de">lern<span class="hl">t</span></span> <span class="kana">レルント</span></td><td>-t</td></tr>
+            <tr><td>sie / Sie</td><td><span class="de">lern<span class="hl">en</span></span> <span class="kana">レルネン</span></td><td>-en</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>変わるのは <b>三人称単数のときだけ</b>。He / She のときだけ動詞に <b>-s</b>（learn<b>s</b>）。あとは全部 learn のまま。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p><b>すべての主語</b>で語尾が変わる。ich / du / er / wir…それぞれ専用の語尾がある。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語は「He/She のときだけ -s を足す」だけ覚えればOK。ドイツ語は6パターン全部が変化するので、語尾のセットを丸ごと覚える。</p>
+      <p class="point same">🤝 <b>ここは英語と似ている：</b>「主語によって動詞が少し変わる」という発想そのものは英語（-s）と同じ。ドイツ語はそれを全主語に拡張した版。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich <u>lerne</u> Deutsch.</span><span class="kana">イッヒ レルネ ドイチュ</span><span class="jp">私はドイツ語を学ぶ。（英：I learn German.）</span></div>
+    <div class="ex"><span class="de">Du <u>machst</u> Sport.</span><span class="kana">ドゥー マッハスト シュポルト</span><span class="jp">君はスポーツをする。（英：You do sports.）</span></div>
+    <div class="ex"><span class="de">Sie <u>lernt</u> Englisch.</span><span class="kana">ズィー レルント エングリッシュ</span><span class="jp">彼女は英語を学ぶ。（英：She learns English.）</span></div>
+
+    <div class="quiz" data-step="s2">
+      <span class="quiz-badge">MINI QUIZ · Step 2</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 3 ================= -->
+  <section class="step" id="step3">
+    <div class="step-head">
+      <div class="step-num">03</div>
+      <div>
+        <h2>名詞の「性別」と「〜を（4格）」の壁</h2>
+        <span class="sub">der / die / das と、目的語での変化</span>
+      </div>
+    </div>
+
+    <p class="lead">ドイツ語最初の大きな壁。すべての名詞に<b>男性・女性・中性</b>という「性別」があり、「the」にあたる冠詞がそれぞれ違います。さらに「〜を」（4格＝目的語）になると形が変わります。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">定冠詞（the）は性別で3種類</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>性別</th><th>「〜は」1格</th><th>「〜を」4格</th></tr></thead>
+          <tbody>
+            <tr><td>男性 (m)</td><td><span class="de">der Mann</span> <span class="kana">デア マン（男）</span></td><td><span class="hl">den</span> Mann <span class="kana">デン マン</span></td></tr>
+            <tr><td>女性 (f)</td><td><span class="de">die Frau</span> <span class="kana">ディー フラウ（女）</span></td><td><span class="de">die</span> Frau <span class="kana">ディー フラウ</span></td></tr>
+            <tr><td>中性 (n)</td><td><span class="de">das Kind</span> <span class="kana">ダス キント（子）</span></td><td><span class="de">das</span> Kind <span class="kana">ダス キント</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:14px 0 0;padding:10px 14px;background:var(--gold-soft);border-radius:10px;font-size:.92rem;color:var(--ink);"><b>ポイント：</b>4格で形が変わるのは<span class="hl">男性だけ</span>！ <b>der → den</b> に化ける。女性 die・中性 das はそのまま。まずはこの一点を押さえればOK。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>「the」は <b>1種類だけ</b>。the man も the woman も the child も、主語でも目的語でも <b>ずっと the</b>。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p>「the」が <b>性別と格で変化</b>。der / die / das があり、目的語では der が den に変わる。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語は冠詞を一切気にしなくていい。ドイツ語は「この名詞は何性か」＋「今どの格か」をいつも意識する必要がある。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich sehe <u>den</u> Mann.</span><span class="kana">イッヒ ゼーエ デン マン</span><span class="jp">私はその男性を見る。（der→den に変化！）</span></div>
+    <div class="ex"><span class="de">Ich habe <u>einen</u> Hund.</span><span class="kana">イッヒ ハーベ アイネン フント</span><span class="jp">私は犬を飼っている。（ein も男性4格で einen に）</span></div>
+    <div class="ex"><span class="de">Ich lese <u>das</u> Buch.</span><span class="kana">イッヒ レーゼ ダス ブーフ</span><span class="jp">私はその本を読む。（中性なので das のまま）</span></div>
+
+    <div class="quiz" data-step="s3">
+      <span class="quiz-badge">MINI QUIZ · Step 3</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 4 ================= -->
+  <section class="step" id="step4">
+    <div class="step-head">
+      <div class="step-num">04</div>
+      <div>
+        <h2>否定文と疑問文の作り方</h2>
+        <span class="sub">動詞をひっくり返す・nicht と kein の使い分け</span>
+      </div>
+    </div>
+
+    <p class="lead">ここは英語より<b>むしろ簡単</b>に感じる人も多いところ。疑問文は「動詞と主語をひっくり返すだけ」、否定は nicht か kein を置くだけです。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">① 疑問文：動詞と主語を入れ替えるだけ</h3>
+      <div class="ex plain" style="background:#fff;border:1px solid var(--line);">
+        <span class="de">Du lernst Deutsch.</span><span class="jp">君はドイツ語を学ぶ。（平叙文）</span>
+      </div>
+      <div style="text-align:center;font-size:1.4rem;color:var(--gold);margin:2px 0;">↓ 動詞を先頭へ</div>
+      <div class="ex plain" style="background:var(--gold-soft);border:1px solid var(--gold);">
+        <span class="de"><u>Lernst</u> du Deutsch?</span><span class="kana">レルンスト ドゥー ドイチュ？</span><span class="jp">君はドイツ語を学んでるの？</span>
+      </div>
+
+      <h3>② 否定：nicht と kein の使い分け</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>使う語</th><th>何を否定する？</th><th>例</th></tr></thead>
+          <tbody>
+            <tr><td><span class="hl">nicht</span> <span class="kana">ニヒト</span></td><td>動詞・形容詞・文全体</td><td><span class="de">Ich trinke nicht.</span><br><span class="kana">飲まない</span></td></tr>
+            <tr><td><span class="hl">kein</span> <span class="kana">カイン</span></td><td>名詞（a / 無冠詞のもの）</td><td><span class="de">Ich habe kein Auto.</span><br><span class="kana">車を持っていない</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>一般動詞だと <b>do / does</b> が必要。<b>Do</b> you learn? / I <b>don't</b> learn. と、助動詞 do を借りてくる。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p><b>do にあたる助動詞は不要</b>。動詞そのものを前に出す／nicht を置くだけ。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語の「Do you〜?」「don't」のような <b>do の助けを一切使わない</b>。</p>
+      <p class="point same">🤝 <b>ここは英語と似ている：</b>be動詞の疑問文 <b>「Are you〜?」</b>を作るノリ（動詞を前に出す）が、ドイツ語では<b>すべての動詞</b>で起きる、と考えると腑に落ちる。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de"><u>Bist</u> du glücklich?</span><span class="kana">ビスト ドゥー グリュックリッヒ？</span><span class="jp">君は幸せ？（英：Are you happy?）</span></div>
+    <div class="ex"><span class="de">Ich trinke <u>nicht</u>.</span><span class="kana">イッヒ トリンケ ニヒト</span><span class="jp">私は飲まない。（動詞を否定）</span></div>
+    <div class="ex"><span class="de">Ich habe <u>keine</u> Zeit.</span><span class="kana">イッヒ ハーベ カイネ ツァイト</span><span class="jp">私は時間がない。（名詞を否定＝kein）</span></div>
+
+    <div class="quiz" data-step="s4">
+      <span class="quiz-badge">MINI QUIZ · Step 4</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 5 ================= -->
+  <section class="step" id="step5">
+    <div class="step-head">
+      <div class="step-num">05</div>
+      <div>
+        <h2>話法の助動詞と「枠構造」</h2>
+        <span class="sub">können / müssen と、動詞が文末に飛ぶルール</span>
+      </div>
+    </div>
+
+    <p class="lead">最後は語順のパズル。<b>können（〜できる）</b>や <b>müssen（〜しなければ）</b>といった助動詞を使うと、本来の動詞が<b>文の一番うしろ</b>に吹っ飛びます。これを「枠構造（Klammer）」と呼びます。</p>
+
+    <div class="card plain" style="background:var(--black);color:#fff;border:none;">
+      <p style="margin:0 0 14px;font-family:var(--display);font-weight:700;color:var(--gold);">🔲 枠構造を目で見る</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:1.15rem;line-height:2.2;">
+        <span>Ich</span>
+        <span style="background:var(--red);padding:4px 12px;border-radius:8px;font-weight:800;">kann</span>
+        <span style="color:var(--gold);">← 助動詞は2番目</span>
+        <br>
+        <span style="opacity:.85;">Deutsch</span>
+        <span style="background:var(--gold);color:var(--black);padding:4px 12px;border-radius:8px;font-weight:800;">sprechen</span>
+        <span style="color:var(--gold);">← 本動詞は文末（原形）</span>
+      </div>
+      <p style="margin:16px 0 0;font-size:.92rem;opacity:.8;">＝ <b>kann … sprechen</b> の2語で文全体を挟む「枠（カッコ）」を作るイメージ。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p><b>I can speak German.</b><br>can と speak が <b>となり同士</b>。目的語 German は最後。素直な語順。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p><b>Ich kann Deutsch sprechen.</b><br>直訳すると「I can German <b>speak</b>」。動詞 sprechen が <b>文末</b>へ。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語では助動詞と動詞がくっつく（can speak）。ドイツ語は助動詞と本動詞が<b>離れて文を挟む</b>。目的語が真ん中に入り込むのが最大の違い。</p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-top:0">können（〜できる）の変化も確認</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>主語</th><th>形</th><th></th></tr></thead>
+          <tbody>
+            <tr><td>ich</td><td><span class="de hl">kann</span> <span class="kana">カン</span></td><td class="kana">ich と er が同じ形！</td></tr>
+            <tr><td>du</td><td><span class="de">kannst</span> <span class="kana">カンスト</span></td><td></td></tr>
+            <tr><td>er / sie / es</td><td><span class="de hl">kann</span> <span class="kana">カン</span></td><td class="kana">-t が付かない</td></tr>
+            <tr><td>wir / sie / Sie</td><td><span class="de">können</span> <span class="kana">ケネン</span></td><td></td></tr>
+            <tr><td>ihr</td><td><span class="de">könnt</span> <span class="kana">ケント</span></td><td></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich muss jetzt <u>gehen</u>.</span><span class="kana">イッヒ ムス イェツト ゲーエン</span><span class="jp">私は今行かなければならない。（gehen が文末）</span></div>
+    <div class="ex"><span class="de">Kannst du <u>schwimmen</u>?</span><span class="kana">カンスト ドゥー シュヴィンメン？</span><span class="jp">君は泳げる？（疑問文＋文末の schwimmen）</span></div>
+    <div class="ex"><span class="de">Wir wollen Pizza <u>essen</u>.</span><span class="kana">ヴィア ヴォレン ピッツァ エッセン</span><span class="jp">私たちはピザを食べたい。（essen が文末）</span></div>
+
+    <div class="quiz" data-step="s5">
+      <span class="quiz-badge">MINI QUIZ · Step 5</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="bar"></div>
+  <p>Viel Erfolg beim Deutschlernen! 🇩🇪 — ドイツ語学習、がんばってください。<br>ブラウザを再読み込みするか「別の問題にチャレンジ」で、クイズは毎回ランダムに切り替わります。</p>
+</footer>
+
+<script>
+/* =========================================================
+   クイズデータ（各ステップに4問ずつ / 合計20問のプール）
+   correct = options 配列内の正解インデックス
+   ========================================================= */
+const QUIZ_DATA = {
+  s1: [
+    { q:'「私は学生です」 <span class="blank">Ich ___ Student.</span>', options:['bin','bist','ist'], correct:0,
+      ex:'ich（私は）に対応する sein は <b>bin</b>。英語の I <b>am</b> にあたります。' },
+    { q:'「君は親切だ」 <span class="blank">Du ___ nett.</span>', options:['bist','bin','sind'], correct:0,
+      ex:'du（君は）には <b>bist</b>。ドゥー・ビストとセットで覚えましょう。英語の you are にあたります。' },
+    { q:'「彼は疲れている」 <span class="blank">Er ___ müde.</span>', options:['ist','bin','seid'], correct:0,
+      ex:'er / sie / es（彼・彼女・それ）には <b>ist</b>。英語の He <b>is</b> と同じ位置づけです。' },
+    { q:'「私たちは友達だ」 <span class="blank">Wir ___ Freunde.</span>', options:['sind','seid','ist'], correct:0,
+      ex:'wir（私たち）には <b>sind</b>。ちなみに ihr（君たち）は seid、混同注意です。' },
+  ],
+  s2: [
+    { q:'「君はドイツ語を学ぶ」 <span class="blank">Du ___ Deutsch.</span>（lernen）', options:['lernst','lernt','lerne'], correct:0,
+      ex:'du の語尾は <b>-st</b> なので lern + st = <b>lernst</b>。英語と違い du 専用の形があります。' },
+    { q:'「彼はスポーツをする」 <span class="blank">Er ___ Sport.</span>（machen）', options:['macht','machst','mache'], correct:0,
+      ex:'er の語尾は <b>-t</b> なので mach + t = <b>macht</b>。英語なら does と -s が付く三人称です。' },
+    { q:'「私は音楽を聞く」 <span class="blank">Ich ___ Musik.</span>（hören）', options:['höre','hörst','hört'], correct:0,
+      ex:'ich の語尾は <b>-e</b> なので hör + e = <b>höre</b>。' },
+    { q:'英語で動詞の形が変わるのは、主語がどんなときだけ？', options:['三人称単数（He/She）のときだけ','すべての主語で毎回','一人称（I）のときだけ'], correct:0,
+      ex:'英語は He/She のとき <b>-s</b> を付けるだけ。ドイツ語は<b>すべての主語</b>で語尾が変わるのが違いでした。' },
+  ],
+  s3: [
+    { q:'男性名詞 <b>der Mann</b> が「〜を」（4格）になると？', options:['den Mann','die Mann','das Mann'], correct:0,
+      ex:'男性の der は4格で <b>den</b> に変化！ これがステップ3最大のポイントです。' },
+    { q:'「私は犬を飼っている」 <span class="blank">Ich habe ___ Hund.</span>（der Hund＝男性）', options:['einen','eine','ein'], correct:0,
+      ex:'男性名詞の「a」＝ein も、4格では <b>einen</b> に変化します（der→den と同じ発想）。' },
+    { q:'女性名詞 <b>die Frau</b> を「〜を」（4格）にすると？', options:['die Frau','den Frau','der Frau'], correct:0,
+      ex:'女性 die は4格でも <b>die</b> のまま。変化するのは男性だけでしたね。' },
+    { q:'4格（〜を）で冠詞の形が変わるのは、どの性の名詞？', options:['男性','女性','中性'], correct:0,
+      ex:'変わるのは <b>男性</b>（der→den）だけ。女性 die・中性 das はそのまま、が合言葉です。' },
+  ],
+  s4: [
+    { q:'「君はドイツ語を学ぶ（Du lernst Deutsch）」を疑問文にすると？', options:['Lernst du Deutsch?','Du lernst Deutsch?','Tust du Deutsch lernen?'], correct:0,
+      ex:'動詞と主語をひっくり返すだけ！ <b>Lernst du Deutsch?</b> 英語のような do は使いません。' },
+    { q:'「私は車を持っていない」 <span class="blank">Ich habe ___ Auto.</span>（名詞の否定）', options:['kein','nicht','nein'], correct:0,
+      ex:'名詞（Auto）を否定するときは <b>kein</b>。nein は「いいえ」という返事なので別物です。' },
+    { q:'「私は飲まない」 <span class="blank">Ich trinke ___.</span>（動詞の否定）', options:['nicht','kein','nein'], correct:0,
+      ex:'動詞や文全体を否定するときは <b>nicht</b>。名詞を消すときは kein、と使い分けます。' },
+    { q:'ドイツ語の疑問文で、英語の <b>do / does</b> にあたる助動詞は？', options:['使わない（不要）','do をそのまま使う','machen を使う'], correct:0,
+      ex:'ドイツ語は do を <b>一切使いません</b>。動詞を前に出すだけ。英語の Are you〜? のノリが全動詞で起きます。' },
+  ],
+  s5: [
+    { q:'「私はドイツ語を話せる」の正しい語順は？', options:['Ich kann Deutsch sprechen.','Ich kann sprechen Deutsch.','Ich sprechen kann Deutsch.'], correct:0,
+      ex:'助動詞 kann は2番目、本動詞 sprechen は<b>文末</b>。kann … sprechen で文を挟む枠構造です。' },
+    { q:'助動詞（können など）を使うと、本来の動詞はどこへ行く？', options:['文末（一番うしろ）','文頭','主語のすぐ前'], correct:0,
+      ex:'本動詞は<b>文末</b>へ飛び、原形（不定詞）になります。これが枠構造の正体です。' },
+    { q:'「私は今行かなければ」 <span class="blank">Ich ___ jetzt gehen.</span>（müssen）', options:['muss','musst','müssen'], correct:0,
+      ex:'ich の müssen は <b>muss</b>。助動詞は ich と er で同じ形になるのも特徴でした。' },
+    { q:'枠構造で文末に置かれる動詞は、どんな形になる？', options:['原形（不定詞）','過去形','-st の形'], correct:0,
+      ex:'文末の動詞は必ず <b>原形（不定詞）</b>。sprechen, gehen, essen のように -en の形で置きます。' },
+  ],
+};
+
+/* ---------- ユーティリティ：配列シャッフル（Fisher–Yates） ---------- */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]] = [a[j],a[i]];
+  }
+  return a;
+}
+
+const LETTERS = ['A','B','C','D'];
+
+/* ---------- 1つのクイズ枠を描画 ---------- */
+function renderQuiz(box){
+  const step = box.dataset.step;
+  const pool = QUIZ_DATA[step];
+
+  // プールからランダムに1問
+  const item = pool[Math.floor(Math.random()*pool.length)];
+
+  // 正解テキストを覚えてから選択肢をシャッフル
+  const correctText = item.options[item.correct];
+  const shuffled = shuffle(item.options);
+
+  // 既存の中身（バッジ以外）をリセット
+  const badge = box.querySelector('.quiz-badge');
+  box.innerHTML = '';
+  if(badge) box.appendChild(badge);
+
+  // 問題文
+  const qEl = document.createElement('div');
+  qEl.className = 'quiz-q';
+  qEl.innerHTML = item.q;
+  box.appendChild(qEl);
+
+  // 選択肢
+  const opts = document.createElement('div');
+  opts.className = 'options';
+  let selectedBtn = null;
+
+  shuffled.forEach((text, idx)=>{
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'opt';
+    btn.dataset.text = text;
+    btn.innerHTML = '<span class="mark">'+LETTERS[idx]+'</span><span>'+text+'</span>';
+    btn.addEventListener('click', ()=>{
+      if(box.dataset.answered === '1') return;
+      opts.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedBtn = btn;
+      checkBtn.disabled = false;
+    });
+    opts.appendChild(btn);
+  });
+  box.appendChild(opts);
+
+  // アクションボタン
+  const actions = document.createElement('div');
+  actions.className = 'quiz-actions';
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'btn btn-primary';
+  checkBtn.textContent = '解答チェック';
+  checkBtn.disabled = true;
+  const againBtn = document.createElement('button');
+  againBtn.className = 'btn btn-ghost';
+  againBtn.textContent = '別の問題にチャレンジ ↻';
+  actions.appendChild(checkBtn);
+  actions.appendChild(againBtn);
+  box.appendChild(actions);
+
+  // フィードバック領域
+  const fb = document.createElement('div');
+  fb.className = 'feedback';
+  box.appendChild(fb);
+
+  // 解答チェック
+  checkBtn.addEventListener('click', ()=>{
+    if(!selectedBtn || box.dataset.answered === '1') return;
+    box.dataset.answered = '1';
+    const isCorrect = selectedBtn.dataset.text === correctText;
+
+    opts.querySelectorAll('.opt').forEach(o=>{
+      o.disabled = true;
+      o.classList.remove('selected');
+      if(o.dataset.text === correctText) o.classList.add('correct');
+      else if(o === selectedBtn) o.classList.add('wrong');
+    });
+
+    checkBtn.disabled = true;
+    fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ng');
+    fb.innerHTML = isCorrect
+      ? '<span class="head">正解！🎉</span><span class="explain">'+item.ex+'</span>'
+      : '<span class="head">残念！ 正解は「'+correctText+'」</span><span class="explain">'+item.ex+'</span>';
+  });
+
+  // 別の問題
+  againBtn.addEventListener('click', ()=>{
+    box.dataset.answered = '0';
+    renderQuiz(box);
+  });
+}
+
+/* ---------- 初期化：全クイズを描画 ---------- */
+document.querySelectorAll('.quiz').forEach(box=>{
+  box.dataset.answered = '0';
+  renderQuiz(box);
+});
+</script>
+</body>
+</html>
