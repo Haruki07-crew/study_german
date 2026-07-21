@@ -137,6 +137,10 @@
   }
   .toc a b{color:var(--red);font-weight:800;margin-right:5px;}
   .toc a:hover{border-color:var(--gold);color:var(--black);box-shadow:var(--shadow);transform:translateY(-1px);}
+  .toc a.toc-test{background:var(--black);color:#fff;border-color:var(--black);}
+  .toc a.toc-test b{color:var(--gold);}
+  .toc a.toc-test:hover{background:var(--red);border-color:var(--red);color:#fff;}
+  .toc a.toc-test:hover b{color:#fff;}
 
   /* ---------- Layout ---------- */
   main{max-width:820px;margin:0 auto;padding:8px 20px 80px;}
@@ -319,6 +323,53 @@
   .feedback .head{font-family:var(--display);font-weight:800;font-size:1.05rem;display:block;margin-bottom:5px;}
   .feedback .explain{color:inherit;opacity:.92;}
 
+  /* ---------- Test（総合テスト） ---------- */
+  .test-intro{
+    background:var(--black);color:#fff;border-radius:var(--radius);
+    padding:26px 24px;box-shadow:var(--shadow-lg);margin:20px 0 26px;position:relative;overflow:hidden;
+  }
+  .test-intro::after{
+    content:"";position:absolute;right:-40px;top:-40px;width:160px;height:160px;border-radius:50%;
+    background:radial-gradient(circle,var(--red),transparent 70%);opacity:.5;
+  }
+  .test-intro h3{font-family:var(--display);font-weight:800;font-size:1.3rem;margin:0 0 8px;color:#fff;position:relative;}
+  .test-intro p{margin:0;color:rgba(255,255,255,.82);font-size:.95rem;position:relative;}
+  .test-intro .gold{color:var(--gold);font-weight:700;}
+
+  .test-q{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    box-shadow:var(--shadow);padding:20px 20px;margin:16px 0;position:relative;
+  }
+  .test-q .qnum{
+    font-family:var(--display);font-weight:800;font-size:.78rem;letter-spacing:.06em;
+    color:#fff;background:var(--red);padding:4px 11px;border-radius:7px;display:inline-block;margin-bottom:12px;
+  }
+  .test-q .qnum .topic{background:rgba(255,255,255,.22);padding:1px 7px;border-radius:5px;margin-left:6px;font-weight:600;}
+  .test-q .quiz-q{margin-top:2px;}
+
+  .test-controls{
+    position:sticky;bottom:0;z-index:10;
+    background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border:1px solid var(--line-strong);border-radius:14px;
+    box-shadow:var(--shadow-lg);padding:16px 18px;margin-top:22px;
+    display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:space-between;
+  }
+  .score-badge{display:none;align-items:center;gap:14px;}
+  .score-badge.show{display:flex;animation:pop .4s ease;}
+  .score-ring{
+    width:58px;height:58px;border-radius:50%;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:800;font-size:1.05rem;color:#fff;
+  }
+  .score-text .big{font-family:var(--display);font-weight:800;font-size:1.15rem;color:var(--black);display:block;line-height:1.2;}
+  .score-text .small{font-size:.85rem;color:var(--ink-soft);}
+
+  @media (max-width:560px){
+    .test-controls{flex-direction:column;align-items:stretch;}
+    .test-controls .btn{width:100%;}
+    .score-badge{justify-content:center;}
+  }
+
   /* ---------- Footer ---------- */
   footer{
     text-align:center;padding:44px 20px 60px;border-top:1px solid var(--line);
@@ -360,6 +411,11 @@
     <a href="#step3"><b>3</b>名詞の性と4格</a>
     <a href="#step4"><b>4</b>否定文・疑問文</a>
     <a href="#step5"><b>5</b>助動詞と枠構造</a>
+    <a href="#step6"><b>6</b>分離動詞</a>
+    <a href="#step7"><b>7</b>現在完了形</a>
+    <a href="#step8"><b>8</b>前置詞と格支配</a>
+    <a href="#step9"><b>9</b>代名詞の3格・4格</a>
+    <a href="#test" class="toc-test"><b>★</b>テスト</a>
   </div>
 </nav>
 
@@ -628,6 +684,226 @@
     </div>
   </section>
 
+  <!-- ================= STEP 6 ================= -->
+  <section class="step" id="step6">
+    <div class="step-head">
+      <div class="step-num">06</div>
+      <div>
+        <h2>分離動詞</h2>
+        <span class="sub">aufstehen（起きる）のように、頭が分離して文末に飛ぶ動詞</span>
+      </div>
+    </div>
+
+    <p class="lead">ドイツ語には <b>aufstehen（起きる）</b>や <b>einkaufen（買い物する）</b>のように、前につく部分（前つづり）が文中で<b>切り離されて文末に飛ぶ</b>動詞があります。ステップ5の枠構造の仲間です。</p>
+
+    <div class="card plain" style="background:var(--black);color:#fff;border:none;">
+      <p style="margin:0 0 14px;font-family:var(--display);font-weight:700;color:var(--gold);">🔲 前つづりが文末へ分離する</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:1.1rem;line-height:2.2;">
+        <span style="opacity:.7;">auf</span><span style="opacity:.7;">+</span><span style="opacity:.7;">stehen</span>
+        <span style="color:var(--gold);">→ 使うと分離 →</span>
+        <span>Ich</span>
+        <span style="background:var(--red);padding:4px 12px;border-radius:8px;font-weight:800;">stehe</span>
+        <span style="opacity:.85;">um 7 Uhr</span>
+        <span style="background:var(--gold);color:var(--black);padding:4px 12px;border-radius:8px;font-weight:800;">auf</span>
+      </div>
+      <p style="margin:16px 0 0;font-size:.92rem;opacity:.8;">動詞本体（stehe）は2番目、切り離された頭（auf）は<b>文末</b>へ。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>句動詞（phrasal verb）にそっくり。<b>turn on</b> → “I turn the light <b>on</b>.” のように、小さな語が離れて後ろに行くことがある。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p><b>aufstehen</b> → “Ich stehe … <b>auf</b>.” 前つづりが必ず文末へ。仕組みは英語の句動詞と同じ発想。</p></div>
+      </div>
+      <p class="point same">🤝 <b>ここは英語と似ている：</b>「動詞＋おまけの語」がバラける現象は、英語の turn on / pick up と同じ。イメージを流用できる。</p>
+      <p class="point">💡 <b>ここが英語と違う：</b>英語は離すか離さないか選べる場面があるが、ドイツ語は普通の文なら<b>必ず</b>文末に分離する。辞書では aufstehen と1語で載っている点にも注意。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich stehe um 7 Uhr <u>auf</u>.</span><span class="kana">イッヒ シュテーエ ウム ズィーベン ウーア アウフ</span><span class="jp">私は7時に起きる。（aufstehen）</span></div>
+    <div class="ex"><span class="de">Wir kaufen heute <u>ein</u>.</span><span class="kana">ヴィア カウフェン ホイテ アイン</span><span class="jp">私たちは今日買い物する。（einkaufen）</span></div>
+    <div class="ex"><span class="de">Der Zug kommt pünktlich <u>an</u>.</span><span class="kana">デア ツーク コムト ピュンクトリッヒ アン</span><span class="jp">電車は時間通りに到着する。（ankommen）</span></div>
+
+    <div class="quiz" data-step="s6">
+      <span class="quiz-badge">MINI QUIZ · Step 6</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 7 ================= -->
+  <section class="step" id="step7">
+    <div class="step-head">
+      <div class="step-num">07</div>
+      <div>
+        <h2>現在完了形</h2>
+        <span class="sub">haben / sein ＋ 過去分詞。会話での「過去」はほぼこれ</span>
+      </div>
+    </div>
+
+    <p class="lead">ドイツ語の日常会話では、過去の話はほとんど <b>現在完了形</b>で表します。作り方は <b>haben か sein</b>（2番目）＋ <b>過去分詞</b>（文末）。またしても枠構造です。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">組み立て方と過去分詞の形</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>タイプ</th><th>過去分詞の形</th><th>例（原形 → 過去分詞）</th></tr></thead>
+          <tbody>
+            <tr><td>規則動詞</td><td><span class="hl">ge-</span>…<span class="hl">-t</span></td><td><span class="de">lernen → gelernt</span> <span class="kana">ゲレルント</span></td></tr>
+            <tr><td>規則動詞</td><td>ge-…-t</td><td><span class="de">machen → gemacht</span> <span class="kana">ゲマハト</span></td></tr>
+            <tr><td>不規則動詞</td><td><span class="hl">ge-</span>…<span class="hl">-en</span></td><td><span class="de">essen → gegessen</span> <span class="kana">ゲゲッセン</span></td></tr>
+            <tr><td>不規則動詞</td><td>ge-…-en</td><td><span class="de">fahren → gefahren</span> <span class="kana">ゲファーレン</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:14px 0 0;padding:10px 14px;background:var(--gold-soft);border-radius:10px;font-size:.92rem;color:var(--ink);"><b>haben か sein か？</b> 多くの動詞は <b>haben</b>。ただし <span class="hl">移動・状態の変化</span>（gehen 行く / fahren 乗って行く / kommen 来る など）は <b>sein</b> を使います。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p><b>have + 過去分詞</b>。“I <b>have learned</b>.” 助動詞は have だけ。過去分詞は動詞のすぐ後ろ。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p><b>haben / sein + 過去分詞</b>。“Ich <b>habe</b> … <b>gelernt</b>.” 過去分詞は文末へ。sein も使う。</p></div>
+      </div>
+      <p class="point same">🤝 <b>ここは英語と似ている：</b>「have＋過去分詞」という骨組みは英語の現在完了とそっくり（haben＝have）。</p>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>①過去分詞が<b>文末</b>に飛ぶ。②英語の「I learned（過去形）」と「I have learned（完了）」の区別がなく、ドイツ語は<b>会話ではどちらも現在完了で言う</b>。③helper が have だけでなく <b>sein</b> もある。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich <u>habe</u> Deutsch <u>gelernt</u>.</span><span class="kana">イッヒ ハーベ ドイチュ ゲレルント</span><span class="jp">私はドイツ語を学んだ。（英：I learned / have learned German.）</span></div>
+    <div class="ex"><span class="de">Er <u>hat</u> Pizza <u>gegessen</u>.</span><span class="kana">エア ハット ピッツァ ゲゲッセン</span><span class="jp">彼はピザを食べた。（haben を使う）</span></div>
+    <div class="ex"><span class="de">Wir <u>sind</u> nach Berlin <u>gefahren</u>.</span><span class="kana">ヴィア ズィント ナーハ ベルリン ゲファーレン</span><span class="jp">私たちはベルリンへ行った。（移動なので sein）</span></div>
+
+    <div class="quiz" data-step="s7">
+      <span class="quiz-badge">MINI QUIZ · Step 7</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 8 ================= -->
+  <section class="step" id="step8">
+    <div class="step-head">
+      <div class="step-num">08</div>
+      <div>
+        <h2>前置詞と格支配</h2>
+        <span class="sub">前置詞ごとに「後ろの格」が決まっている</span>
+      </div>
+    </div>
+
+    <p class="lead">ドイツ語の前置詞は、それぞれ「後ろに来る名詞を何格にするか」が決まっています。これを<b>格支配</b>と呼びます。まずは「4格をとる組」と「3格をとる組」を押さえましょう。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">よく使う前置詞と、とる格</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>とる格</th><th>代表的な前置詞</th><th>意味</th></tr></thead>
+          <tbody>
+            <tr><td><span class="hl">4格</span>（〜を の格）</td><td><span class="de">für / ohne / gegen / um / durch</span></td><td>〜のために／〜なしで／〜に対して…</td></tr>
+            <tr><td><span class="hl">3格</span>（〜に の格）</td><td><span class="de">mit / nach / aus / bei / von / zu / seit</span></td><td>〜と一緒に／〜へ／〜から…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:14px 0 0;padding:10px 14px;background:var(--gold-soft);border-radius:10px;font-size:.92rem;color:var(--ink);"><b>例：</b>男性 <b>der Bus</b> は、3格支配の <b>mit</b> の後ろで <b>mit dem Bus</b>（der→dem）に変化します。前置詞が格を決め、格が冠詞を変える、という連鎖です。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>前置詞の後ろでも名詞は<b>形を変えない</b>。“for the man”, “with the man” — the man はそのまま。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p>前置詞が<b>格を強制</b>し、冠詞が変わる。“für den Mann”（4格）／“mit dem Mann”（3格）。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語は前置詞を覚えれば終わりだが、ドイツ語は「その前置詞は何格支配か」までセットで覚え、後ろの冠詞・代名詞を変える必要がある。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Das ist <u>für</u> dich.</span><span class="kana">ダス イスト フューア ディッヒ</span><span class="jp">これは君のためだ。（für＋4格 → dich）</span></div>
+    <div class="ex"><span class="de">Ich fahre <u>mit</u> dem Bus.</span><span class="kana">イッヒ ファーレ ミット デム ブス</span><span class="jp">私はバスで行く。（mit＋3格 → dem Bus）</span></div>
+    <div class="ex"><span class="de">Ich gehe <u>ohne</u> dich.</span><span class="kana">イッヒ ゲーエ オーネ ディッヒ</span><span class="jp">私は君なしで行く。（ohne＋4格 → dich）</span></div>
+
+    <div class="quiz" data-step="s8">
+      <span class="quiz-badge">MINI QUIZ · Step 8</span>
+    </div>
+  </section>
+
+  <!-- ================= STEP 9 ================= -->
+  <section class="step" id="step9">
+    <div class="step-head">
+      <div class="step-num">09</div>
+      <div>
+        <h2>人称代名詞の3格と4格</h2>
+        <span class="sub">「〜を（4格）」と「〜に（3格）」で形が変わる</span>
+      </div>
+    </div>
+
+    <p class="lead">「私を」「私に」のような代名詞も、ドイツ語では <b>4格（〜を）</b>と <b>3格（〜に）</b>で別の形になります。英語だと1つで済むところが、ドイツ語では2つに分かれます。</p>
+
+    <div class="card">
+      <h3 style="margin-top:0">人称代名詞の変化表</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>1格（〜は）</th><th>4格（〜を）</th><th>3格（〜に）</th></tr></thead>
+          <tbody>
+            <tr><td><span class="de">ich</span> 私</td><td><span class="hl">mich</span> <span class="kana">ミッヒ</span></td><td><span class="hl">mir</span> <span class="kana">ミア</span></td></tr>
+            <tr><td><span class="de">du</span> 君</td><td><span class="hl">dich</span> <span class="kana">ディッヒ</span></td><td><span class="hl">dir</span> <span class="kana">ディア</span></td></tr>
+            <tr><td><span class="de">er</span> 彼</td><td><span class="hl">ihn</span> <span class="kana">イーン</span></td><td><span class="hl">ihm</span> <span class="kana">イーム</span></td></tr>
+            <tr><td><span class="de">sie</span> 彼女</td><td>sie <span class="kana">ズィー</span></td><td><span class="hl">ihr</span> <span class="kana">イーア</span></td></tr>
+            <tr><td><span class="de">wir</span> 私たち</td><td>uns <span class="kana">ウンス</span></td><td>uns <span class="kana">ウンス</span></td></tr>
+            <tr><td><span class="de">ihr</span> 君たち</td><td>euch <span class="kana">オイヒ</span></td><td>euch <span class="kana">オイヒ</span></td></tr>
+            <tr><td><span class="de">sie/Sie</span> 彼ら/あなた</td><td>sie/Sie <span class="kana">ズィー</span></td><td><span class="hl">ihnen/Ihnen</span> <span class="kana">イーネン</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin:14px 0 0;padding:10px 14px;background:var(--gold-soft);border-radius:10px;font-size:.92rem;color:var(--ink);"><b>4格＝直接目的語（〜を）／3格＝間接目的語（〜に）。</b> 特に <b>ich→mich / mir</b>、<b>er→ihn / ihm</b> の違いは最頻出。ここを死守しましょう。</p>
+    </div>
+
+    <div class="compare">
+      <p class="compare-title">英語 ⇄ ドイツ語 くらべてみる</p>
+      <div class="vs">
+        <div class="col en"><span class="tag">English</span><p>目的格は<b>1つだけ</b>。“I love <b>him</b>.”（〜を）も “I give <b>him</b> a book.”（〜に）も同じ <b>him</b>。</p></div>
+        <div class="col de"><span class="tag">Deutsch</span><p>目的格が<b>2つに分裂</b>。「彼を」＝<b>ihn</b>（4格）、「彼に」＝<b>ihm</b>（3格）と使い分ける。</p></div>
+      </div>
+      <p class="point">💡 <b>ここが英語と決定的に違う：</b>英語は me / him / us …の1系統で済むが、ドイツ語は「〜を」と「〜に」で別の単語を選ぶ。どちらの目的語かを毎回判断する。</p>
+    </div>
+
+    <h3>例文で確認</h3>
+    <div class="ex"><span class="de">Ich liebe <u>dich</u>.</span><span class="kana">イッヒ リーベ ディッヒ</span><span class="jp">私は君を愛している。（dich＝4格「君を」）</span></div>
+    <div class="ex"><span class="de">Er hilft <u>mir</u>.</span><span class="kana">エア ヒルフト ミア</span><span class="jp">彼は私を助けてくれる。（helfen は3格支配 → mir）</span></div>
+    <div class="ex"><span class="de">Ich gebe <u>ihm</u> ein Buch.</span><span class="kana">イッヒ ゲーベ イーム アイン ブーフ</span><span class="jp">私は彼に本をあげる。（ihm＝3格「彼に」）</span></div>
+
+    <div class="quiz" data-step="s9">
+      <span class="quiz-badge">MINI QUIZ · Step 9</span>
+    </div>
+  </section>
+
+  <!-- ================= 総合テスト ================= -->
+  <section class="step" id="test">
+    <div class="step-head">
+      <div class="step-num">★</div>
+      <div>
+        <h2>総合テスト</h2>
+        <span class="sub">ミニクイズの発展版 — 全9ステップから出題・採点つき</span>
+      </div>
+    </div>
+
+    <div class="test-intro">
+      <h3>チャレンジテスト 🇩🇪</h3>
+      <p>これまでの内容を横断する応用問題を、プールから<span class="gold">ランダムに5問</span>出題します。すべて選んだら <span class="gold">「採点する」</span>を押してください。<span class="gold">「新しいテスト」</span>で問題は毎回入れ替わります。</p>
+    </div>
+
+    <div id="test-questions"></div>
+
+    <div class="test-controls">
+      <div class="score-badge" id="scoreBadge">
+        <div class="score-ring" id="scoreRing">–</div>
+        <div class="score-text">
+          <span class="big" id="scoreBig">–</span>
+          <span class="small" id="scoreSmall">採点結果がここに出ます</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="gradeBtn">採点する</button>
+        <button class="btn btn-ghost" id="newTestBtn">新しいテスト ↻</button>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer>
@@ -691,7 +967,77 @@ const QUIZ_DATA = {
     { q:'枠構造で文末に置かれる動詞は、どんな形になる？', options:['原形（不定詞）','過去形','-st の形'], correct:0,
       ex:'文末の動詞は必ず <b>原形（不定詞）</b>。sprechen, gehen, essen のように -en の形で置きます。' },
   ],
+  s6: [
+    { q:'「私は7時に起きる」 <span class="blank">Ich ___ um 7 Uhr ___.</span>（aufstehen）', options:['stehe … auf','aufstehe … （なし）','stehe auf … （なし）'], correct:0,
+      ex:'aufstehen は分離動詞。本体 stehe が2番目、前つづり <b>auf</b> が文末へ。→ Ich stehe um 7 Uhr auf.' },
+    { q:'分離動詞を普通の文で使うと、前つづり（auf-, ein- など）はどこへ行く？', options:['文末','文頭','変わらず動詞にくっついたまま'], correct:0,
+      ex:'前つづりは切り離されて<b>文末</b>へ。英語の turn … on と同じイメージです。' },
+    { q:'「私たちは今日買い物する」 <span class="blank">Wir ___ heute ___.</span>（einkaufen）', options:['kaufen … ein','einkaufen …','kaufen ein …'], correct:0,
+      ex:'einkaufen → Wir <b>kaufen</b> heute <b>ein</b>. 本体が2番目、ein が文末です。' },
+    { q:'分離動詞の考え方に近い、英語の文法は？', options:['句動詞（turn on, pick up）','be動詞','三人称単数の -s'], correct:0,
+      ex:'英語の句動詞（turn the light <b>on</b>）と同じく、おまけの語が後ろに離れる現象です。' },
+  ],
+  s7: [
+    { q:'「私はドイツ語を学んだ」 <span class="blank">Ich ___ Deutsch gelernt.</span>', options:['habe','bin','werde'], correct:0,
+      ex:'lernen は haben をとる動詞。Ich <b>habe</b> … gelernt。過去分詞 gelernt は文末です。' },
+    { q:'現在完了形で、過去分詞（gelernt, gegessen など）はどこに置く？', options:['文末','文頭','主語の直後'], correct:0,
+      ex:'過去分詞は必ず<b>文末</b>。haben/sein が2番目、過去分詞が最後、の枠構造です。' },
+    { q:'「私たちはベルリンへ行った」 <span class="blank">Wir ___ nach Berlin gefahren.</span>', options:['sind','haben','waren'], correct:0,
+      ex:'fahren（乗って行く）は移動の動詞なので <b>sein</b> をとります。→ Wir <b>sind</b> … gefahren.' },
+    { q:'規則動詞 machen の過去分詞は？', options:['gemacht','machte','gemachen'], correct:0,
+      ex:'規則動詞は <b>ge-…-t</b>。mach → <b>gemacht</b>。lernen → gelernt と同じパターンです。' },
+  ],
+  s8: [
+    { q:'「これは君のためだ」 <span class="blank">Das ist für ___.</span>', options:['dich','dir','du'], correct:0,
+      ex:'für は<b>4格支配</b>。du の4格は dich。→ für <b>dich</b>。' },
+    { q:'「私はバスで行く」 <span class="blank">Ich fahre mit ___ Bus.</span>（der Bus）', options:['dem','den','der'], correct:0,
+      ex:'mit は<b>3格支配</b>。男性 der Bus は3格で <b>dem</b> Bus に変化します。' },
+    { q:'次のうち、4格をとる前置詞はどれ？', options:['für','mit','bei'], correct:0,
+      ex:'<b>für</b> は4格支配（für/ohne/gegen/um/durch の仲間）。mit・bei は3格支配です。' },
+    { q:'ドイツ語の前置詞が英語と大きく違う点は？', options:['後ろの名詞の格（＝冠詞の形）を決める','必ず文末に置く','複数形になる'], correct:0,
+      ex:'前置詞ごとに<b>とる格が決まっており</b>、後ろの冠詞や代名詞の形が変わります。英語にはない仕組みです。' },
+  ],
+  s9: [
+    { q:'「私は君を愛している」 <span class="blank">Ich liebe ___.</span>', options:['dich','dir','du'], correct:0,
+      ex:'「君を」は直接目的語＝<b>4格</b>。du の4格は <b>dich</b> です。' },
+    { q:'「私は彼に本をあげる」 <span class="blank">Ich gebe ___ ein Buch.</span>', options:['ihm','ihn','er'], correct:0,
+      ex:'「彼に」は間接目的語＝<b>3格</b>。er の3格は <b>ihm</b>。（4格 ihn と混同注意）' },
+    { q:'er（彼）の「〜を」（4格）の形は？', options:['ihn','ihm','ihr'], correct:0,
+      ex:'er の4格は <b>ihn</b>、3格は ihm。「〜を＝ihn」「〜に＝ihm」で区別します。' },
+    { q:'英語 him が1つで済む役割を、ドイツ語はどう扱う？', options:['ihn（4格）と ihm（3格）に分ける','すべて ihm にする','変化させない'], correct:0,
+      ex:'英語の him は「〜を」も「〜に」も同じですが、ドイツ語は <b>ihn / ihm</b> に分かれます。' },
+  ],
 };
+
+/* =========================================================
+   総合テスト用データ（応用問題プール・全12問／毎回5問を出題）
+   ========================================================= */
+const TEST_DATA = [
+  { topic:'分離動詞', q:'「私は7時に起きる」を正しく並べたのは？', options:['Ich stehe um 7 Uhr auf.','Ich aufstehe um 7 Uhr.','Ich stehe auf um 7 Uhr.'], correct:0,
+    ex:'aufstehen は分離動詞。stehe が2番目、auf が文末。時刻 um 7 Uhr はその間に入ります。' },
+  { topic:'現在完了', q:'「彼はベルリンへ行った」 Er ___ nach Berlin ___.', options:['ist … gefahren','hat … gefahren','ist … fahren'], correct:0,
+    ex:'fahren は移動動詞なので <b>sein</b>（ist）＋過去分詞 <b>gefahren</b>。過去分詞は文末です。' },
+  { topic:'前置詞', q:'「私はバスで行く」 Ich fahre mit ___ Bus.（der Bus）', options:['dem','den','der'], correct:0,
+    ex:'mit は3格支配。男性 der Bus → 3格 <b>dem</b> Bus。前置詞が格を決めています。' },
+  { topic:'代名詞', q:'「私は君を愛している」 Ich liebe ___.', options:['dich','dir','du'], correct:0,
+    ex:'直接目的語（〜を）＝4格。du の4格は <b>dich</b>。' },
+  { topic:'代名詞', q:'「彼は私を助けてくれる」 Er hilft ___.（helfen は3格支配）', options:['mir','mich','ich'], correct:0,
+    ex:'helfen は3格をとる動詞。ich の3格は <b>mir</b>。意味は「私を」でも文法上は3格です。' },
+  { topic:'現在完了', q:'「私はドイツ語を学んだ」 Ich ___ Deutsch gelernt.', options:['habe','bin','war'], correct:0,
+    ex:'lernen は haben をとります。→ Ich <b>habe</b> Deutsch gelernt.' },
+  { topic:'前置詞', q:'次のうち 4格をとる前置詞は？', options:['für','mit','nach'], correct:0,
+    ex:'<b>für</b> は4格支配。mit・nach は3格支配です。' },
+  { topic:'分離動詞', q:'「私たちは今日買い物する」 Wir ___ heute ___.（einkaufen）', options:['kaufen … ein','einkaufen …','kaufen ein …'], correct:0,
+    ex:'einkaufen → Wir <b>kaufen</b> heute <b>ein</b>。本体が2番目、ein が文末。' },
+  { topic:'代名詞', q:'「私は彼に本をあげる」 Ich gebe ___ ein Buch.', options:['ihm','ihn','er'], correct:0,
+    ex:'「彼に」＝間接目的語＝3格。er の3格は <b>ihm</b>（4格 ihn と区別）。' },
+  { topic:'現在完了', q:'現在完了形で、過去分詞が置かれる位置は？', options:['文末','文頭','動詞のすぐ後ろ'], correct:0,
+    ex:'haben/sein が2番目、過去分詞は<b>文末</b>。枠構造は完了形でも共通です。' },
+  { topic:'代名詞', q:'er（彼）の 4格の形は？', options:['ihn','ihm','ihr'], correct:0,
+    ex:'er の4格＝<b>ihn</b>、3格＝ihm。「〜を＝ihn」で覚えましょう。' },
+  { topic:'前置詞', q:'「これは君のためだ」 Das ist für ___.', options:['dich','dir','du'], correct:0,
+    ex:'für は4格支配。du の4格は <b>dich</b>。→ für dich。' },
+];
 
 /* ---------- ユーティリティ：配列シャッフル（Fisher–Yates） ---------- */
 function shuffle(arr){
@@ -796,11 +1142,144 @@ function renderQuiz(box){
   });
 }
 
-/* ---------- 初期化：全クイズを描画 ---------- */
+/* ---------- 初期化：全ミニクイズを描画 ---------- */
 document.querySelectorAll('.quiz').forEach(box=>{
   box.dataset.answered = '0';
   renderQuiz(box);
 });
+
+/* =========================================================
+   総合テスト（発展版）：プールから5問ランダム→採点
+   ========================================================= */
+const TEST_COUNT = 5;
+const testWrap   = document.getElementById('test-questions');
+const gradeBtn   = document.getElementById('gradeBtn');
+const newTestBtn = document.getElementById('newTestBtn');
+const scoreBadge = document.getElementById('scoreBadge');
+const scoreRing  = document.getElementById('scoreRing');
+const scoreBig   = document.getElementById('scoreBig');
+const scoreSmall = document.getElementById('scoreSmall');
+
+let currentTest = []; // {item, correctText, selected, block}
+
+function buildTest(){
+  currentTest = [];
+  testWrap.innerHTML = '';
+  scoreBadge.classList.remove('show');
+  gradeBtn.disabled = false;
+  gradeBtn.textContent = '採点する';
+
+  // プールから重複なしで5問選ぶ
+  const picked = shuffle(TEST_DATA).slice(0, TEST_COUNT);
+
+  picked.forEach((item, i)=>{
+    const correctText = item.options[item.correct];
+    const shuffled = shuffle(item.options);
+
+    const block = document.createElement('div');
+    block.className = 'test-q';
+
+    const num = document.createElement('div');
+    num.className = 'qnum';
+    num.innerHTML = 'Q'+(i+1)+' <span class="topic">'+item.topic+'</span>';
+    block.appendChild(num);
+
+    const qEl = document.createElement('div');
+    qEl.className = 'quiz-q';
+    qEl.innerHTML = item.q;
+    block.appendChild(qEl);
+
+    const opts = document.createElement('div');
+    opts.className = 'options';
+
+    const record = { item, correctText, selected:null, block, opts };
+
+    shuffled.forEach((text, idx)=>{
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'opt';
+      btn.dataset.text = text;
+      btn.innerHTML = '<span class="mark">'+LETTERS[idx]+'</span><span>'+text+'</span>';
+      btn.addEventListener('click', ()=>{
+        if(record.graded) return;
+        opts.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+        btn.classList.add('selected');
+        record.selected = btn;
+      });
+      opts.appendChild(btn);
+    });
+
+    block.appendChild(opts);
+    const fb = document.createElement('div');
+    fb.className = 'feedback';
+    block.appendChild(fb);
+    record.fb = fb;
+
+    testWrap.appendChild(block);
+    currentTest.push(record);
+  });
+}
+
+function gradeTest(){
+  // 未回答チェック
+  const unanswered = currentTest.filter(r=>!r.selected);
+  if(unanswered.length){
+    scoreBadge.classList.add('show');
+    scoreRing.style.background = 'var(--gold)';
+    scoreBig.textContent = 'あと'+unanswered.length+'問';
+    scoreSmall.textContent = 'すべての問題を選んでから採点してね';
+    // 未回答の問題を軽く強調
+    unanswered.forEach(r=>{
+      r.block.style.outline = '2px solid var(--gold)';
+      setTimeout(()=>{ r.block.style.outline=''; }, 1400);
+    });
+    return;
+  }
+
+  let score = 0;
+  currentTest.forEach(r=>{
+    r.graded = true;
+    const isCorrect = r.selected.dataset.text === r.correctText;
+    if(isCorrect) score++;
+    r.opts.querySelectorAll('.opt').forEach(o=>{
+      o.disabled = true;
+      o.classList.remove('selected');
+      if(o.dataset.text === r.correctText) o.classList.add('correct');
+      else if(o === r.selected) o.classList.add('wrong');
+    });
+    r.fb.className = 'feedback show ' + (isCorrect ? 'ok' : 'ng');
+    r.fb.innerHTML = isCorrect
+      ? '<span class="head">正解！🎉</span><span class="explain">'+r.item.ex+'</span>'
+      : '<span class="head">不正解 — 正解は「'+r.correctText+'」</span><span class="explain">'+r.item.ex+'</span>';
+  });
+
+  gradeBtn.disabled = true;
+
+  // スコア表示
+  const total = currentTest.length;
+  const ratio = score/total;
+  const color = ratio === 1 ? 'var(--correct)' : ratio >= 0.6 ? 'var(--gold)' : 'var(--red)';
+  const msg = ratio === 1 ? 'パーフェクト！ Ausgezeichnet! 🏆'
+            : ratio >= 0.6 ? 'good! Gut gemacht! この調子 👍'
+            : 'もう一度復習してみよう 💪';
+
+  scoreBadge.classList.add('show');
+  scoreRing.style.background = color;
+  scoreRing.textContent = score + '/' + total;
+  scoreBig.textContent = Math.round(ratio*100) + '点';
+  scoreSmall.textContent = msg;
+
+  // 結果へスクロール
+  scoreBadge.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+gradeBtn.addEventListener('click', gradeTest);
+newTestBtn.addEventListener('click', ()=>{
+  buildTest();
+  document.getElementById('test').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+buildTest();
 </script>
 </body>
 </html>
